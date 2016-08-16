@@ -1,0 +1,4 @@
+*** WooCommerce Payment Express PX Post Gateway Changelog ***
+
+2016.08.16 - version 1.0.0
+ * Initial release!
