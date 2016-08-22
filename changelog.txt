@@ -1,4 +1,7 @@
 *** WooCommerce Payment Express PX Pay PX Post Hybrid Gateway Changelog ***
 
+2016.08.22 - version 1.0.1
+ * removed bug for failed subscription order to put it in failed status.
+ 
 2016.08.16 - version 1.0.0
  * Initial release!

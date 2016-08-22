@@ -53,7 +53,10 @@ $this->log->add( 'pxpay', '====== callback function has been accessed' );
 	}
 	
 	public function Payment_Express_success_result($enc_hex) {
+		global $woocommerce;
+		
 		if ( isset( $enc_hex ) ) {
+			
 			$resultReq = new DpsPxPayResult( $this->access_userid, $this->access_key, $this->access_url );
 			$resultReq->result = wp_unslash( $enc_hex );
 $this->log->add( 'pxpay', print_r( array( 'resultReq->result' => $resultReq->result, 'enc_hex' => $enc_hex ), true ) );
@@ -87,7 +90,11 @@ $this->log->add( 'pxpay', print_r( array( 'current_user->ID' => $userId, 'Billin
 					} else {
 						$this->log->add( 'pxpay', sprintf( 'failed; %s', $response->statusText ) );
 						$order->update_status('failed', sprintf(__('Payment %s via Payment Express.', 'woothemes'), strtolower( $response->statusText ) ) );
-						wp_redirect( WC_Payment_Gateway::get_return_url( $order ) );
+						wc_add_notice( sprintf(__('Payment %s via Payment Express.', 'woothemes'), strtolower( $response->statusText ) ), $notice_type = 'error' );
+						
+						$urlFail = $woocommerce->cart->get_checkout_url();
+						wp_redirect( $urlFail );
+						/* wp_redirect( WC_Payment_Gateway::get_return_url( $order ) ); */
 						exit();
 						
 					}

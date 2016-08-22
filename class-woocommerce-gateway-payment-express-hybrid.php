@@ -428,7 +428,7 @@ $this->log->add( 'pxpost', print_r( array( 'Subscription renewal results' => var
 		$dpsCardHolderResponseText = $dpsBillingID[1];
 		$dpsTxnRef = $dpsBillingID[4];
 		$dpsBillingID = $dpsBillingID[5];
-		//if payment completed with successself::wc_pxpost_log( array( 'pxpost dps CardHolder Response Text' => $dpsCardHolderResponseText ) );
+		//if payment completed with success self::wc_pxpost_log( array( 'pxpost dps CardHolder Response Text' => $dpsCardHolderResponseText ) );
 		if ( preg_match("/APPROVED/i", $dpsCardHolderResponseText ) ) {
 			$order->payment_complete();
 			add_post_meta( $order->id, 'dpsTxnRef', $dpsTxnRef, true );
