@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Payment Express
  * Plugin URI: http://woothemes.com/products/woocommerce-gateway-payment-express-hybrid/
  * Description: Allows your customers to pay via Payment Express PxPay (Supports PxPay1 & 2). The extension also uses PxPost for recurring billing support with the WooCommerce Subscriptions extension.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: OPMC
  * Author URI: http://opmc.com.au/
  * Developer: OPMC
