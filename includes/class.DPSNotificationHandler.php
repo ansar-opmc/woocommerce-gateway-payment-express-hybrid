@@ -84,6 +84,7 @@ $this->log->add( 'pxpay', print_r( array( 'current_user->ID' => $userId, 'Billin
 						
 						/*new supplier details (dpsbillingid) being saved */
 						update_user_meta( $userId, '_supDpsBillingID', $response->billingID );
+						update_post_meta( $result_orderId, 'dpsTxnRef', $response->txnRef );
 						
 						wp_redirect( WC_Payment_Gateway::get_return_url( $order ) );
 						exit();

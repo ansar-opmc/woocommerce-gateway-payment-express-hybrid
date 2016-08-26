@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Payment Express
  * Plugin URI: http://woothemes.com/products/woocommerce-gateway-payment-express-hybrid/
  * Description: Allows your customers to pay via Payment Express PxPay (Supports PxPay1 & 2). The extension also uses PxPost for recurring billing support with the WooCommerce Subscriptions extension.
- * Version: 1.0.1
+ * Version: 1.1
  * Author: OPMC
  * Author URI: http://opmc.com.au/
  * Developer: OPMC
@@ -226,10 +226,12 @@ self::wc_pxhybrid_log( array( 'pxpost result returned by wc_pxpost_pxpost_parse_
 			public function wc_pxhybrid_refundProcess_callback(){
 				global $woocommerce, $wpdb;
 				$available_gateways = $woocommerce->payment_gateways->get_available_payment_gateways();
-				$payment_method = $available_gateways[ 'Payment_Express' ];
+				$payment_method = $available_gateways[ 'payment_express_hybrid' ];
+
 				$URL = $payment_method->settings[ 'pxPost_url' ];
-				$marchenUserName = $payment_method->pp_user;
-				$marchentPassword = $payment_method->pp_password;
+				$marchenUserName = $payment_method->settings[ 'pxPost_username' ];
+				$marchentPassword = $payment_method->settings[ 'pxPost_password' ];
+		
 				$order_id = $_GET['order_id'];
 				$merchRef = 'Refund Order#'. $order_id;	
 				$dpsTxnRef = get_post_meta( $order_id, 'dpsTxnRef', true );
