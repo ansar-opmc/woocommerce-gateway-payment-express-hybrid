@@ -445,12 +445,13 @@ $this->log->add( 'pxpost', print_r( array( 'Subscription renewal results' => var
 	 public function process_refund( $order_id, $amount = null, $reason = '' ) {
 		global $woocommerce;
 		$available_gateways = $woocommerce->payment_gateways->get_available_payment_gateways();
-		$payment_method = $available_gateways[ 'Payment_Express' ];
+		$payment_method = $available_gateways[ 'payment_express_hybrid' ];
+$this->log->add( 'pxpost', print_r( array( 'payment_method' => $payment_method ), true ) );		
+		
 		$URL = $payment_method->settings[ 'pxPost_url' ];
-		$marchenUserName = $payment_method->pp_user;
-		$marchentPassword = $payment_method->pp_password;	
-$this->log->add( 'pxpost', print_r( array( 'pxpost user' => $marchenUserName ), true ) );
-$this->log->add( 'pxpost', print_r( array( 'pxpost password' => $marchentPassword ), true ) );
+		$marchenUserName = $payment_method->settings[ 'pxPost_username' ];
+		$marchentPassword = $payment_method->settings[ 'pxPost_password' ];
+
 		$merchRef = 'Refund Order#'. $order_id;	
 		$dpsTxnRef = get_post_meta( $order_id, 'dpsTxnRef', true );
 		$amount = number_format( $amount, 2, '.', '' );
